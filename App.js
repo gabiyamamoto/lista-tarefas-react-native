@@ -29,64 +29,66 @@ export default function App() {
     const removerTarefa = (idParaRemover) => {
         //O filter atua como um "segurança de balada"
         // ele cria uma nova lista deixando passar APENAS qm tem o ID diferente do que queremos apagar
-        const listaFiltrada = listaTarefas.filter((item) => itemId !== idParaRemover);
+        const listaFiltrada = listaTarefas.filter((item) => item.id !== idParaRemover);
 
         //atualizamos o estado com essa nova lista
         setListaTarefas(listaFiltrada);
 
-        return (
-            <View style={styles.container}>
-                <Text style={styles.titulo}>Minhas Tarefas</Text>
-
-                {}
-                <View style={styles.inputContainer}>
-                    <TextInput
-                        styles={styles.input}
-                        placeholder="O que vamos fazer hoje?"
-                        value={novaTarefa}
-                        onChangeText={setNovaTarefa}
-                    />
-                    <TouchableOpacity style={styles.botaoAdicionar} onpPress={adicionarTarefa}>
-                        <Text style={styles.textoBotaoAdicionar}></Text>+
-                    </TouchableOpacity>
-                </View>
-                {}
-                <FlatList
-                    data={listaTarefas}
-                    keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => (
-                        <View style={styles.itemLista}>
-                            <Text>{item.texto}</Text>
-                            {}
-                            <TouchableOpacity
-                                style={styles.botaoRemover}
-                                onpPress={() => removerTarefa(item.id)}>
-                                <Text style={styles.textoBotaoRemover}>X</Text>
-                            </TouchableOpacity>
-                        </View>
-                    )}
-                    ListEmptyComponent={() => (
-                        <Text style={style.textoVazio}>
-                            Nenhuma tarefa por aqui. Você está livre! 🏖️
-                        </Text>
-                    )}
-                />
-            </View>
-        );
     };
+
+
+    return (
+        <View style={styles.container}>
+            <Text style={styles.titulo}>Minhas Tarefas</Text>
+
+            { }
+            <View style={styles.inputContainer}>
+                <TextInput
+                    style={styles.input}
+                    placeholder="O que vamos fazer hoje?"
+                    value={novaTarefa}
+                    onChangeText={setNovaTarefa}
+                />
+                <TouchableOpacity style={styles.botaoAdicionar} onPress={adicionarTarefa}>
+                    <Text style={styles.textoBotaoAdicionar}>+</Text>
+                </TouchableOpacity>
+            </View>
+            { }
+            <FlatList
+                data={listaTarefas}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                    <View style={styles.itemLista}>
+                        <Text>{item.texto}</Text>
+                        { }
+                        <TouchableOpacity
+                            style={styles.botaoRemover}
+                            onPress={() => removerTarefa(item.id)}>
+                            <Text style={styles.textoBotaoRemover}>X</Text>
+                        </TouchableOpacity>
+                    </View>
+                )}
+                ListEmptyComponent={() => (
+                    <Text style={styles.textoVazio}>
+                        Nenhuma tarefa por aqui. Você está livre! 🏖️
+                    </Text>
+                )}
+            />
+        </View>
+    );
 }
 
-const syles = StyleSheet.create({
-    continer: {
+const styles = StyleSheet.create({
+    container: {
         flex: 1,
-        backgroundColor: '#ffff',
+        backgroundColor: '#2d2d2d',
         paddingTop: 60,
         paddingHorizontal: 20,
     },
     titulo: {
         fontSize: 28,
-        fontWeight: 'hold',
-        color: '#444444',
+        fontWeight: '600',
+        color: '#ffa600',
         marginBottom: 20,
     },
     inputContainer: {
@@ -95,18 +97,18 @@ const syles = StyleSheet.create({
     },
     input: {
         flex: 1,
-        heght: 50,
-        backgroundColor: '#fff',
+        height: 50,
+        backgroundColor: '#ffffff',
         borderRadius: 8,
         paddingHorizontal: 15,
         fontSize: 16,
         borderWidth: 1,
-        borderColor: '#fff',
+        borderColor: '#ffa600',
     },
     botaoAdicionar: {
         width: 50,
-        heght: 50,
-        backgroundColor: '#ffff',
+        height: 50,
+        backgroundColor: '#ffa600',
         borderRadius: 8,
         justifyContent: 'center',
         alignItems: 'center',
@@ -115,7 +117,7 @@ const syles = StyleSheet.create({
     textoBotaoAdicionar: {
         color: '#fff',
         fontSize: 24,
-        fontWeight: 'bold',
+        fontWeight: '600',
     },
     itemLista: {
         flexDirection: 'row',
@@ -125,18 +127,14 @@ const syles = StyleSheet.create({
         marginBottom: 10,
         alignItems: 'center',
         justifyContent: 'space-between',
-        elevation: 2,
-        shadowColor: '#fff',
-        shadowOpacity: 0.1,
-        shadowOffset: { width: 0, height: 2 },
     },
     textoItem: {
         fontSize: 16,
-        color: '#fff',
+        color: '#000000',
         flex: 1,
     },
-    BotaoRemover: {
-        backgroundColor: '#ffff',
+    botaoRemover: {
+        backgroundColor: '#ffa600',
         width: 30,
         height: 30,
         borderRadius: 15,
@@ -144,12 +142,12 @@ const syles = StyleSheet.create({
         alignItems: 'center',
     },
     textoBotaoRemover: {
-        color: '#fff',
+        color: '#ffffff',
         fontWeight: 'bold',
     },
     textoVazio: {
         textAlign: 'center',
-        color: '#fff',
+        color: '#ffffff',
         fontSize: 16,
         marginTop: 30,
     },
